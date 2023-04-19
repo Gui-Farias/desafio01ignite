@@ -2,23 +2,27 @@ import { Trash } from '@phosphor-icons/react';
 import { ChangeEvent, MouseEvent, useState } from 'react';
 
 interface Task {
+  id: string;
   task: string;
-  onDeleteTask: (task:string) => void;
+  onCompletedTask: (TaskCompleted:string) => void;
+  onDeleteTask: (id:string) => void;
 }
 
-export function Task({task, onDeleteTask}:Task) {
+export function Task({task, id, onCompletedTask, onDeleteTask}:Task) {
   const [checked, setChecked] = useState(false);
 
   function handleDeleteTask() {
-    onDeleteTask(task)
+    onDeleteTask(id)
   }
 
   function handleCheckTask(event:MouseEvent<HTMLElement> | ChangeEvent<HTMLInputElement>) {
     setChecked(prevState => !prevState)
-    const target = event.target as HTMLElement | HTMLInputElement; 
+    onCompletedTask(id);
     
+    const target = event.target as HTMLElement | HTMLInputElement; 
     target.classList.toggle('line-through');
     target.classList.toggle('text-neutral-400');
+    target.classList.toggle('text-white');
   }
 
   return (
