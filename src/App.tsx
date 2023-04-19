@@ -1,5 +1,4 @@
 import { Header } from './components/Header';
-import { SearchBar } from './components/SearchBar';
 import { Content } from './components/Content';
 
 import './App.css'
@@ -12,11 +11,7 @@ export function App() {
       <Header />
 
       <main className="main container mx-auto px-4">
-        < SearchBar />
-      
-        <div className="content">
-          <Content />
-        </div>
+        <Content />
       </main>
     </div>
   )
